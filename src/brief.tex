@@ -1,0 +1,125 @@
+\documentclass[%
+  fontsize=12pt, % Schriftgröße
+  version=last%  % Neueste Version von KOMA-Skript verwenden
+]{scrlttr2}
+
+% ===== Deutsche Sprache =====
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+% ============================
+
+\LoadLetterOption{DIN} % Einstellungen für DIN 676 laden
+
+% \LoadLetterOption{absender} % Absenderdaten und -einstellungen aus absender.lco laden
+
+
+
+
+
+\KOMAoptions{%
+% fromemail=true,       % Email wird im Briefkopf angezeigt
+% fromphone=true,       % Telefonnumer wird im Briefkopf angezeigt
+% fromfax=true,         % Faxnummer wird im Briefkopf angezeit
+% fromurl=true,         % URL wird im Briefkopf angezeigt
+% fromlogo=true,        % Logo wird im Briefkopf angezeigt
+% subject=titled,       % Druckt "Betrifft: " vor dem Betreff
+locfield=wide,          % Breite Absenderergänzung (location)
+fromalign=left,         % Ausrichtung des Briefkopfes
+fromrule=afteraddress%  % Trennlinie unter dem Briefkopf
+}
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[ngerman]{babel}
+
+\setkomavar{fromname}{$fromname$} % Name
+\setkomavar{fromaddress}{% % Adresse
+  {$for(fromaddress)$$fromaddress$$sep$\\$endfor$}
+}
+\setkomavar{fromfax}{$fromfax$} % Faxnummer
+\setkomavar{fromemail}{$email$} % Email-Adresse
+\setkomavar{fromphone}{$fromphone$} % Telefonnummer
+\setkomavar{fromurl}[Website:~]{$fromurl$} % Website
+
+% ===== Absenderergänzung =====
+\setkomavar{location}{%
+  \raggedright\footnotesize{%
+  \usekomavar{fromname}\\
+  \usekomavar{fromaddress}\\
+  \usekomavar*{fromphone}\usekomavar{fromphone}\\
+  \usekomavar*{fromfax}\usekomavar{fromfax}\\
+  \usekomavar*{fromemail}\usekomavar{fromemail}
+  \usekomavar*{fromurl}\usekomavar{fromurl}}%
+}
+% ============================
+
+% Logo
+% \setkomavar{fromlogo}{\includegraphics{logo.png}}
+
+% Die Bankverbindung wird nicht automatisch verwendet. Dazu muss bspw. mittels \firstfoot ein eigener Brieffuß definiert werden.
+\setkomavar{frombank}{}
+
+% ===== Signatur =====
+\setkomavar{signature}{%
+  \usekomavar{fromname}\\
+%
+}
+\renewcommand*{\raggedsignature}{\raggedright}
+% ====================
+
+
+
+
+
+
+\usepackage{graphicx} % Um Grafiken (bspw. das Logo) einbinden zu können
+
+\begin{document}
+
+\begin{letter}{%
+% ===== Zielanschrift =====
+{$for(address)$$address$$sep$\\$endfor$}
+% =======================
+}
+
+% ====== Geschäftszeichenzeile =========
+\setkomavar{yourref}{$yourref$}          % Ihr Zeichen
+\setkomavar{yourmail}{}         % Ihr Schreiben vom
+\setkomavar{myref}{}            % Unser Zeichen
+\setkomavar{customer}{}         % Kundennummer
+\setkomavar{invoice}{}          % Rechnungsnummer
+\setkomavar{place}{$place$} % Ort
+\setkomavar{date}{$date$}       % Datum
+% =====================================
+
+% \setkomavar{title}{Titel}
+
+\setkomavar{subject}{$subject$}
+
+\opening{$opening$}
+
+$body$
+
+\closing{$closing$}
+
+% ===== Postskriptum =====
+% \ps PS: \dots
+% ========================
+
+% ===== Anlage(n) =====
+% \setkomavar*{enclseparator}{Anlage}
+%\encl{%
+%  Anlage 1\\
+%  Anlage 2%
+%}
+% ===================
+
+% ===== Verteiler =====
+% \setkomavar*{ccseparator}{Kopie an}
+%\cc{%
+%  Verteiler 1\\
+%  Verteiler 2%
+%}
+% =====================
+
+\end{letter}
+\end{document}
