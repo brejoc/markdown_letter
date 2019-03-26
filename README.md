@@ -37,10 +37,6 @@ Lörem *ipsum* dolor sit amet, _consete_ sadipscing elitr, sed diam nonumy eirmo
 
 With a little help of pandoc and texlive this Markdown file is converted to a well formatted (German DIN) letter.
 
-## Try it
-
-Visit my [test installation](http://46.101.120.204/) and follow the instructions.
-
 ## Installation
 
 markdown_letter is a simple flask application. You can find the python dependencies in the [requirements.txt](https://github.com/brejoc/markdown_letter/blob/master/src/requirements.txt). Additional dependencies are `pandoc` and `texlive-full`. I'm not sure which verison of `texlive-full` is needed, but it won't work on Ubuntu 14.04. 16.04 is fine. FreeBSD 10.3 is also working.
